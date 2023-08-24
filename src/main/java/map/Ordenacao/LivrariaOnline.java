@@ -6,7 +6,7 @@ import java.util.*;
  * @see "https://www.cblservicos.org.br/isbn/pesquisa/"
  */
 public class LivrariaOnline {
-  //atributos
+  // atributos
   private Map<String, Livro> livros;
 
   public LivrariaOnline() {
@@ -19,16 +19,19 @@ public class LivrariaOnline {
 
   public void removerLivro(String titulo) {
     Livro livroRemovido = null;
+    String chaveLivroRemovido = null;
     for (Map.Entry<String, Livro> entry : livros.entrySet()) {
       if (entry.getValue().getTitulo().equals(titulo)) {
         livroRemovido = entry.getValue();
+        chaveLivroRemovido = entry.getKey();
         break;
       }
     }
     if (livroRemovido != null) {
-      livros.remove(livroRemovido);
+      livros.remove(chaveLivroRemovido);
     }
   }
+
   public Map<String, Livro> exibirLivrosOrdenadosPorPreco() {
     return new TreeMap<>(livros);
   }
@@ -73,11 +76,12 @@ public class LivrariaOnline {
     return livroMaisCaro;
   }
 
-
   public static void main(String[] args) {
     LivrariaOnline livrariaOnline = new LivrariaOnline();
-    livrariaOnline.adicionarLivro("https://amzn.to/3JjrxJl", new Livro("1984", "George Orwell",  19.60d));
-    livrariaOnline.adicionarLivro("https://amzn.to/3PmYFnb", new Livro("Caixa de Pássaros - Bird Box: Não Abra os Olhos", "Josh Malerman", 19.99d ));
-    livrariaOnline.adicionarLivro("https://amzn.to/43Sfzi0", new Livro("Assassinato no Expresso do Oriente", "Agatha Christie", 26.90d));
+    livrariaOnline.adicionarLivro("https://amzn.to/3JjrxJl", new Livro("1984", "George Orwell", 19.60d));
+    livrariaOnline.adicionarLivro("https://amzn.to/3PmYFnb",
+        new Livro("Caixa de Pássaros - Bird Box: Não Abra os Olhos", "Josh Malerman", 19.99d));
+    livrariaOnline.adicionarLivro("https://amzn.to/43Sfzi0",
+        new Livro("Assassinato no Expresso do Oriente", "Agatha Christie", 26.90d));
   }
 }
